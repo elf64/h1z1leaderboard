@@ -51,6 +51,12 @@ getInfo.get_regions()
 ```
 
 To get the id's for all regions.
+### Compile it yourself!!
+```
+Run -> python setup.py install
+In the command line to compile the script yourself!
+```
+
 
 ## Output
 
