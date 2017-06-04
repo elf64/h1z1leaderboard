@@ -2,11 +2,17 @@
 This is a script that will fetch all important info about a player from the H1Z1 Kotk leaderboard!
 
 ```python
-from h1z1Leader import GetRank
+import Stats
+import sys
 
-getInfo = GetRank('Farambe', '2') # <-- the '2' Stands for the Region you want to search for
-getInfo.GetAll()
+getInfo = Stats.GetRank(sys.argv[1], sys.argv[2])
+getInfo.get_all()
 ```
+### Example
+```
+python example.py eryctriceps 2
+```
+
 
 Use 
 
