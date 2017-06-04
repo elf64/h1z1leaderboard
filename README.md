@@ -12,12 +12,19 @@ getInfo.get_all()
 ```
 python example.py eryctriceps 2
 ```
+```
+[erytriceps] - username
+[2] - Id of region
+Ex of ID:
+  North America - 1
+  Europe - 2
+  etc..
+```
 
 
 Use 
 
 ```python
-
 getInfo.get_regions()
 ```
 
