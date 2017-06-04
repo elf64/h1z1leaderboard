@@ -1,7 +1,7 @@
 # Python 2.7
 # Library: requests
-from h1z1Leader import GetRank
+import h1z1Leader
+import sys
 
-getInfo = GetRank('Farambe', '2')
-getInfo.getRegions()
-getInfo.getAll()
+getInfo = h1z1Leader.GetRank(sys.argv[1], sys.argv[2])
+getInfo.get_all()
