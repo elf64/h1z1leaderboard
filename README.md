@@ -6,6 +6,7 @@ You can find the .exe file in the dist/v00x folder
 The executable files will always be up-to-date
 ```
 ### Example for windows
+##### Run in cmd
 ```
 ./getStatus.exe eryctriceps 2
 
