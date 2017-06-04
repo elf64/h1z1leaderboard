@@ -2,6 +2,7 @@ __author__ = "PukaPy"
 
 import requests
 
+
 class GetRank():
 
     def __init__(self, nameX, region):
@@ -36,7 +37,7 @@ class GetRank():
 
         self.params = {
             "pageSize": "25",
-            "filterKey": "s4_r2_g1",
+            "filterKey": "s4_r{}_g1".format(region),
             "pageNumber": "1",
             "name": "{}".format(nameX)
         }
@@ -70,9 +71,12 @@ class GetRank():
 
         # Assign the current Rank ex(1,2,3..6) to rank variable
         # and the sub-rank to the sub_rank variable
-
-        rank = last_j["successPayload"]["rows"][0]["values"]["tier"]
-        sub_rank = last_j["successPayload"]["rows"][0]["values"]["subtier"]
+        try:
+            rank = last_j["successPayload"]["rows"][0]["values"]["tier"]
+            sub_rank = last_j["successPayload"]["rows"][0]["values"]["subtier"]
+        except:
+            print "User not found!"
+            quit()
 
         #
         # Get player rank
