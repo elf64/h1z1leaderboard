@@ -1,5 +1,6 @@
-import requests
+__author__ = "PukaPy"
 
+import requests
 
 class GetRank():
 
