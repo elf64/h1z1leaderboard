@@ -6,6 +6,8 @@ import requests
 class GetRank():
 
     def __init__(self, nameX, region):
+        self.carrot = []
+
         self.regions = {
             "North America": "1",
             "Europe": "2",
@@ -52,6 +54,36 @@ class GetRank():
         for k, v in self.regions.items():
             print "Region: {} With ID -> {}".format(k, v)
 
+    def PrintShiny(self, Scores):
+        if len(Scores["score"]) < 6:
+            self.carrot.append("Score:   {:,} > ".format(
+                int(Scores["score"])
+            ))
+        else:
+            self.carrot.append("Score:  {:,} > ".format(
+                int(Scores["score"])
+            ))
+        if len(Scores["kills"]) >= 2:
+            self.carrot.append("Kills: [ {:,}] >  ".format(
+                int(Scores["kills"])
+            ))
+        else:
+            self.carrot.append("Kills: [ {:,} ] >  ".format(
+                int(Scores["kills"])
+            ))
+        if len(Scores["rank"]) >= 2:
+            self.carrot.append("Place: [ {:,}]".format(
+                int(Scores["rank"])
+            ))
+        else:
+            self.carrot.append("Place: [ {:,} ]".format(
+                int(Scores["rank"])
+            ))
+        print ''.join(self.carrot)
+        del self.carrot[:]
+
+
+
     def GetAll(self):
         """
         Get all info about the player
@@ -89,26 +121,15 @@ class GetRank():
         #
         print "\n\nUser : {}\n".format(
             last_j["successPayload"]["rows"][0]["values"]["user_name"]
-        ), "\nIn position {}\n-----------------\nTop 10 Matches!\n-----------------".format(
-            last_j["successPayload"]["rows"][0]["position"]
+        ), "\nIn position {:,}\n-----------------\nTop 10 Matches!\n-----------------".format(
+            int(last_j["successPayload"]["rows"][0]["position"])
         )
         #
         # Print top10 matches
         #
         for i in range(0, 10):
             Scores = last_j["successPayload"]["rows"][0]["detail"]["top_matches"][i]
-            if len(Scores["kills"]) >= 2:
-                print "Score:  {:,} > Kills: [ {:,}] >  Place: [ {} ]".format(
-                    int(Scores["score"]),
-                    int(Scores["kills"]),
-                    int(Scores["rank"])
-                )
-            else:
-                print "Score:  {:0,} > Kills: [ {:0,} ] >  Place: [ {} ]".format(
-                        int(Scores["score"]),
-                        int(Scores["kills"]),
-                        int(Scores["rank"])
-                )
+            self.PrintShiny(Scores)
 
         print "-----------------\r\n"
         #
