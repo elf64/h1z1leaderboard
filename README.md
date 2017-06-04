@@ -18,7 +18,7 @@ Use
 
 ```python
 
-getInfo.getRegions()
+getInfo.get_regions()
 ```
 
 To get the id's for all regions.
