@@ -3,7 +3,7 @@ __author__ = "PukaPy"
 import requests
 
 
-class GetRank():
+class GetRank:
 
     def __init__(self, nameX, region):
         self.carrot = []
