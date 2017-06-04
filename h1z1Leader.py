@@ -98,16 +98,16 @@ class GetRank():
         for i in range(0, 10):
             Scores = last_j["successPayload"]["rows"][0]["detail"]["top_matches"][i]
             if len(Scores["kills"]) >= 2:
-                print "Score:  {} , Kills: [ {}],  Place: [ {} ]".format(
-                    Scores["score"],
-                    Scores["kills"],
-                    Scores["rank"]
+                print "Score:  {:,} > Kills: [ {:,}] >  Place: [ {} ]".format(
+                    int(Scores["score"]),
+                    int(Scores["kills"]),
+                    int(Scores["rank"])
                 )
             else:
-                print "Score:  {} , Kills: [ {} ],  Place: [ {} ]".format(
-                        Scores["score"],
-                        Scores["kills"],
-                        Scores["rank"]
+                print "Score:  {:0,} > Kills: [ {:0,} ] >  Place: [ {} ]".format(
+                        int(Scores["score"]),
+                        int(Scores["kills"]),
+                        int(Scores["rank"])
                 )
 
         print "-----------------\r\n"
@@ -117,21 +117,21 @@ class GetRank():
         print "Kills per Match Ratio: {}\n" \
               "Wins per Match Ratio: {}\n" \
               "Top10 Per Match Ratio: {}\n" \
-              "Top10 Total Score: {}\n" \
-              "Top Kills: {}\n" \
-              "Total Matches: {}\n" \
-              "Total Wins: {}\n" \
-              "Total Kills: {}\n" \
+              "Top10 Total Score: {:,}\n" \
+              "Top Kills: {:,}\n" \
+              "Total Matches: {:,}\n" \
+              "Total Wins: {:,}\n" \
+              "Total Kills: {:,}\n" \
               "\n--> RANK: {} {} <--\n"\
             .format(
-            last_j["successPayload"]["rows"][0]["values"]["kills_per_match"],
-            last_j["successPayload"]["rows"][0]["values"]["wins_per_match"],
-            last_j["successPayload"]["rows"][0]["values"]["top_tens_per_match"],
-            last_j["successPayload"]["rows"][0]["values"]["top_10_total_score"],
-            last_j["successPayload"]["rows"][0]["values"]["top_kills"],
-            last_j["successPayload"]["rows"][0]["values"]["total_matches"],
-            last_j["successPayload"]["rows"][0]["values"]["total_wins"],
-            last_j["successPayload"]["rows"][0]["values"]["total_kills"],
+            float(last_j["successPayload"]["rows"][0]["values"]["kills_per_match"]),
+            float(last_j["successPayload"]["rows"][0]["values"]["wins_per_match"]),
+            float(last_j["successPayload"]["rows"][0]["values"]["top_tens_per_match"]),
+            int(last_j["successPayload"]["rows"][0]["values"]["top_10_total_score"]),
+            int(last_j["successPayload"]["rows"][0]["values"]["top_kills"]),
+            int(last_j["successPayload"]["rows"][0]["values"]["total_matches"]),
+            int(last_j["successPayload"]["rows"][0]["values"]["total_wins"]),
+            int(last_j["successPayload"]["rows"][0]["values"]["total_kills"]),
             rank, sub_rank
         )
 
