@@ -1,6 +1,28 @@
 # H1Z1 King of the Kill Leaderboard Script
 This is a script that will fetch all important info about a player from the H1Z1 Kotk leaderboard!
+### Executable Version
+```
+You can find the .exe file in the dist/v00x folder
+The executable files will always be up-to-date
+```
+### Example for windows
+```
+./getStatus.exe eryctriceps 2
 
+NOTE:
+  [eryctrices] - username
+  [2] - Region ID
+
+[Regions IDs]
+
+Region: North America With ID -> 1
+Region: Europe With ID -> 2
+Region: South America With ID -> 3
+Region: Australia With ID -> 5
+Region: Asia/Pacific With ID -> 4
+```
+
+## Source code example
 ```python
 import Stats
 import sys
@@ -8,7 +30,7 @@ import sys
 getInfo = Stats.GetRank(sys.argv[1], sys.argv[2])
 getInfo.get_all()
 ```
-### Example
+### Cmd run Example
 ```
 python example.py eryctriceps 2
 ```
