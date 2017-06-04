@@ -1,11 +1,13 @@
-__author__ = "PukaPy"
-
 import requests
+
+__author__ = "PukaPy"
 
 
 class GetRank:
 
     def __init__(self, nameX, region):
+        self.nameX = nameX
+        self.region = region
         self.carrot = []
 
         self.regions = {
@@ -33,13 +35,13 @@ class GetRank:
             "Accept-Language": "en-US,en;q=0.5",
             "Accept-Encoding": "gzip, deflate, br",
             "Referer": "https://www.h1z1.com/king-of-the-kill/leaderboards?" \
-                       "region={}&pageLength=25&page=1&searchText={}".format(region, nameX),
+                       "region={}&pageLength=25&page=1&searchText={}".format(self.region, self.nameX),
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         }
 
         self.params = {
             "pageSize": "25",
-            "filterKey": "s4_r{}_g1".format(region),
+            "filterKey": "s4_r{}_g1".format(self.region),
             "pageNumber": "1",
             "name": "{}".format(nameX)
         }
@@ -82,9 +84,7 @@ class GetRank:
         print ''.join(self.carrot)
         del self.carrot[:]
 
-
-
-    def GetAll(self):
+    def get_all(self):
         """
         Get all info about the player
         Ex:
@@ -106,7 +106,7 @@ class GetRank:
         try:
             rank = last_j["successPayload"]["rows"][0]["values"]["tier"]
             sub_rank = last_j["successPayload"]["rows"][0]["values"]["subtier"]
-        except:
+        except IndexError:
             print "User not found!"
             quit()
 
@@ -128,12 +128,12 @@ class GetRank:
         # Print top10 matches
         #
         for i in range(0, 10):
-            Scores = last_j["successPayload"]["rows"][0]["detail"]["top_matches"][i]
-            self.PrintShiny(Scores)
+            scores = last_j["successPayload"]["rows"][0]["detail"]["top_matches"][i]
+            self.PrintShiny(scores)
 
         print "-----------------\r\n"
         #
-        # Print Leaderboard info
+        # Print Leader board info
         #
         print "Kills per Match Ratio: {}\n" \
               "Wins per Match Ratio: {}\n" \
@@ -145,14 +145,14 @@ class GetRank:
               "Total Kills: {:,}\n" \
               "\n--> RANK: {} {} <--\n"\
             .format(
-            float(last_j["successPayload"]["rows"][0]["values"]["kills_per_match"]),
-            float(last_j["successPayload"]["rows"][0]["values"]["wins_per_match"]),
-            float(last_j["successPayload"]["rows"][0]["values"]["top_tens_per_match"]),
-            int(last_j["successPayload"]["rows"][0]["values"]["top_10_total_score"]),
-            int(last_j["successPayload"]["rows"][0]["values"]["top_kills"]),
-            int(last_j["successPayload"]["rows"][0]["values"]["total_matches"]),
-            int(last_j["successPayload"]["rows"][0]["values"]["total_wins"]),
-            int(last_j["successPayload"]["rows"][0]["values"]["total_kills"]),
-            rank, sub_rank
-        )
+                float(last_j["successPayload"]["rows"][0]["values"]["kills_per_match"]),
+                float(last_j["successPayload"]["rows"][0]["values"]["wins_per_match"]),
+                float(last_j["successPayload"]["rows"][0]["values"]["top_tens_per_match"]),
+                int(last_j["successPayload"]["rows"][0]["values"]["top_10_total_score"]),
+                int(last_j["successPayload"]["rows"][0]["values"]["top_kills"]),
+                int(last_j["successPayload"]["rows"][0]["values"]["total_matches"]),
+                int(last_j["successPayload"]["rows"][0]["values"]["total_wins"]),
+                int(last_j["successPayload"]["rows"][0]["values"]["total_kills"]),
+                rank, sub_rank
+            )
 
