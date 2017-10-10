@@ -1,3 +1,4 @@
+##### Outdated and not supported anymore
 # H1Z1 King of the Kill Leaderboard Script
 This is a script that will fetch all important info about a player from the H1Z1 Kotk leaderboard!
 ### Executable Version
